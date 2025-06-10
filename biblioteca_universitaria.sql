@@ -34,3 +34,28 @@ FOREIGN KEY (id_aluno) REFERENCES alunos (id_aluno);
 
 ALTER TABLE penalidades ADD CONSTRAINT FK_penalidades_X_PK_alunos
 FOREIGN KEY (id_aluno) REFERENCES alunos (id_aluno);
+
+
+#inserindo os alunos
+INSERT INTO alunos (nome, curso, data_matricula) VALUES
+('João Vitor', 'Engenharia de Software', '2024-02-01'),
+('Luiz Antônio', 'Engenharia de Software', '2023-06-01'),
+('Samuel Arthur','Educação Fisica','2024-01-16'),
+('José Bento','Agronomia','2024-01-01'); 
+
+#inserindo os livros
+INSERT INTO livros (titulo, autor, quantidade_estoque) VALUES
+('Introdução à Linguagem SQL', 'Thomas Nield', 4),
+('O Programador Pragmático: De Aprendiz a Mestre', 'Andrew Hunt', 5),
+('Manual de Anatomia do Exercício', 'Ken Ashwell', 6),
+('Hipertrofia muscular: Ciência e prática', 'Brad Schoenfeld', 3),
+('Manejo ecológico do solo : A agricultura em regiões tropicais', 'Ana Maria Primavesi', 7),
+('Manual de Identificação e Controle de Plantas Daninhas', 'Harri Lorenzi', 10),
+('Entendendo Algoritmos', 'Aditya Bhargava', 8),
+('Código Limpo: Habilidades Práticas do Agile Software', 'Robert C. Martin', 2);
+
+
+#inserindo dois emprestimos um completo e outro incompleto
+INSERT INTO emprestimos(id_aluno, id_livro, data_emprestimo, data_devolcao) VALUES
+(1, 1, '2025-01-12',null),
+(3, 4, '2025-02-28', '2025-03-05');
