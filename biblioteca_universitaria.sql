@@ -31,3 +31,6 @@ FOREIGN KEY (id_livro) REFERENCES livros (id_livro);
 
 ALTER TABLE emprestimos ADD CONSTRAINT FK_emprestimosXPK_alunos
 FOREIGN KEY (id_aluno) REFERENCES alunos (id_aluno);
+
+ALTER TABLE penalidades ADD CONSTRAINT FK_penalidades_X_PK_alunos
+FOREIGN KEY (id_aluno) REFERENCES alunos (id_aluno);
