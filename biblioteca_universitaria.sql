@@ -92,5 +92,18 @@ END;
 //
 DELIMITER ;
 ----------Trigger--------
-
+CREATE TRIGGER trg_verificar_atraso_devolucao
+AFTER UPDATE ON emprestimos
+FOR EACH ROW
+BEGIN
+    IF NEW.data_devolucao IS NOT NULL 
+       AND DATEDIFF(NEW.data_devolucao, OLD.data_emprestimo) > 7 THEN
+        INSERT INTO penalidades (id_aluno, descricao, data_penalidade)
+        VALUES (
+            NEW.id_aluno,
+            'Atraso na devolução do livro.',
+            CURDATE()
+        );
+    END IF;
+END;
 -------------------------
