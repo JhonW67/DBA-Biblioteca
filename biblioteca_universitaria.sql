@@ -63,7 +63,34 @@ INSERT INTO emprestimos(id_aluno, id_livro, data_emprestimo, data_devolcao) VALU
 -----------view----------
 
 -------------------------
+DELIMITER //
+CREATE PROCEDURE registrar_emprestimo (
+    IN p_id_aluno INT,
+    IN p_id_livro INT,
+    IN p_data_emprestimo DATE
+)
+BEGIN
+    DECLARE v_estoque INT;
 
+    -- Verifica estoque
+    SELECT quantidade_estoque INTO v_estoque
+    FROM livros WHERE id_livro = p_id_livro;
+
+    IF v_estoque > 0 THEN
+        -- Insere empréstimo
+        INSERT INTO emprestimos (id_aluno, id_livro, data_emprestimo)
+        VALUES (p_id_aluno, p_id_livro, p_data_emprestimo);
+
+        -- Atualiza estoque
+        UPDATE livros SET quantidade_estoque = quantidade_estoque - 1
+        WHERE id_livro = p_id_livro;
+    ELSE
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Livro sem estoque disponível.';
+    END IF;
+END;
+//
+DELIMITER ;
 ----------Trigger--------
 
 -------------------------
