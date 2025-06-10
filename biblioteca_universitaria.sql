@@ -56,7 +56,7 @@ INSERT INTO livros (titulo, autor, quantidade_estoque) VALUES
 
 
 #inserindo dois emprestimos um completo e outro incompleto
-INSERT INTO emprestimos(id_aluno, id_livro, data_emprestimo, data_devolcao) VALUES
+INSERT INTO emprestimos(id_aluno, id_livro, data_emprestimo, data_devolucao) VALUES
 (1, 1, '2025-01-12',null),
 (3, 4, '2025-02-28', '2025-03-05');
 
