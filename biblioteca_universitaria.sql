@@ -25,3 +25,6 @@ CREATE TABLE penalidades (
     ,descricao TEXT NOT NULL
     ,data_penalidade DATE NOT NULL
 );
+
+ALTER TABLE emprestimos ADD CONSTRAINT FK_emprestimosXPK_alunos
+FOREIGN KEY (id_aluno) REFERENCES alunos (id_aluno);
