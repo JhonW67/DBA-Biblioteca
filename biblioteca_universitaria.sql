@@ -61,7 +61,15 @@ INSERT INTO emprestimos(id_aluno, id_livro, data_emprestimo, data_devolucao) VAL
 (3, 4, '2025-02-28', '2025-03-05');
 
 -----------view----------
-
+CREATE VIEW view_emprestimos_ativos AS
+SELECT 
+    a.nome AS nome_aluno,
+    l.titulo AS titulo_livro,
+    e.data_emprestimo
+FROM emprestimos e
+JOIN alunos a ON e.id_aluno = a.id_aluno
+JOIN livros l ON e.id_livro = l.id_livro
+WHERE e.data_devolucao IS NULL;
 -------------------------
 DELIMITER //
 CREATE PROCEDURE registrar_emprestimo (
